@@ -160,3 +160,105 @@ let numero2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 let validacion = numero2.every((numero) => numero % 2 == 0);
 console.log(validacion);
+
+// find && findIndex
+let clientes = [
+  { id: 1, nombre: "susuana" },
+  { id: 2, nombre: "miguel" },
+  { id: 3, nombre: "carolina" },
+  { id: 4, nombre: "erick" },
+];
+
+let cliente = clientes.find((cliente) => cliente.id === 1);
+console.log(clientes);
+console.log(cliente);
+
+//FindIndex
+let clientes2 = [
+  { id: 1, nombre: "susuana" },
+  { id: 2, nombre: "miguel" },
+  { id: 3, nombre: "carolina" },
+  { id: 4, nombre: "erick" },
+];
+
+let posicion = clientes2.findIndex((cliente) => cliente.id === 2);
+
+console.log(posicion);
+
+//includes
+let mascota = ["gato", "perro", "raton"];
+let resultadoMascota = mascota.includes("gato");
+console.log(resultadoMascota);
+
+// Join
+let elementos = ["aire", "fuego", "agua"];
+
+let elemtResult = elementos.join(".");
+console.log(elemtResult);
+
+let clientes3 = [
+  { id: 1, nombre: "susuana" },
+  { id: 2, nombre: "miguel" },
+  { id: 3, nombre: "carolina" },
+  { id: 4, nombre: "erick" },
+];
+
+const csvGenerator = (array, separador = ",") => {
+  // Nos permite tomar las key de los objetos
+  let headers = Object.keys(array[0]).join(separador);
+  // genetamos un array con los datos del obejot y los separamos con el separador seleccionado
+  let data = array.map((element) => Object.values(element).join(separador));
+  console.log(headers);
+  // Recorremos cada uno de los elementos
+  data.forEach((element) => console.log(element));
+};
+
+csvGenerator(clientes3, "-");
+// Object.values no permite seleccionar solo los valores de un objeto
+console.log(Object.values({ id: 1, nombre: "susuana" }));
+// Object.keys no permite seleccionar solo los key de un objeto
+console.log(Object.keys({ id: 1, nombre: "susuana" }));
+
+//cancat , sort- splice - slice
+
+//concat
+let array1 = [1, 2, 3, 4, 5];
+let array2 = [6, 7, 8, 9, 10];
+
+let array3 = array1.concat(array2);
+// usando spread operarotor hace la funcion similar al concat, lo que hace es q copia exactamente lo que esta en el array
+let array4 = [...array1, ...array2];
+
+console.log(array3);
+console.log(array4);
+
+//sort
+
+let numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+let meses = ["dic", "ene", "mar", "feb"];
+
+console.log(numeros.sort());
+console.log(meses.sort());
+
+var arrayN = [1, 10000, 21, 30, 4];
+//Ordenarlo por si peso numerico
+let ordenado = arrayN.sort((a, b) => a - b);
+console.log(ordenado);
+
+//splice
+var nombre = ["miguel", "luis", "dayana"];
+//si se le pasa un parametro de posicion y cuantos quieres eliminar luego de esa posicion
+//eliminara toodo los demas elementos despues de la posicion 1
+nombre.splice(1);
+//en este caso eliminar 1 elemento luego de la posicion 1
+nombre.splice(1, 2);
+// Tambien podremos remplezar elementos
+nombre.splice(1, 1, "ada");
+
+console.log(nombre);
+
+// slice
+var nombre5 = ["miguel", "luis", "dayana", "ramnbo"];
+// recibe dos parametros , desde donde se quiere cortar el arreglo , y la posicion final hasta donde se quiere cortar
+let copiaNom = nombre5.slice(0, 3); //no incluye la ultima posicion
+console.log(copiaNom);
