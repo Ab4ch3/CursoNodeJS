@@ -23,14 +23,23 @@ const main = async () => {
   // .map((character) => Object.values(character).join(","))
   // .join("\n");
 
-  let header = Object.keys(characters[0]).join(",");
-  let content = Object.values(characters).join(",");
-  console.log(header);
-  console.log(content);
-  // no sirve para generar un archivo los datos en un archivo
-  // await fs.writeFile(path.join(__dirname, "data.csv"), characters);
+  const createCsv = (contenido) => {
+    let header = Object.keys(characters[0]).join(",");
+    let content = characters.map((character) =>
+      Object.values(character).join(",")
+    );
+    content.unshift(header);
 
-  //console.log(__dirname); // nos devovlera el path donde estamos ubicados
+    let result = content.join("\n");
+
+    return result;
+  };
+  console.log(createCsv(characters));
+
+  // no sirve para generar un archivo los datos en un archivo
+  await fs.writeFile(path.join(__dirname, "data.csv"), createCsv());
+
+  // console.log(__dirname); // nos devolvera el path donde estamos ubicados
   // console.log(path.join(__dirname, "data.csv")); // path nos permite colocar la ruta y un archivo donde queremos guardar los datos
 };
 
